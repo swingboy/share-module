@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>about module</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">ABOUT JS模块</h1>
+
+<h2 id="toc_1">1、引言-背景</h2>
+
+<p>模块化这个问题并非一开始就存在，WWW刚刚问世的时候，html，JavaScript，CSS都是极其简单的存在，并不需要模块化。</p>
+
+<h4 id="toc_2">1.1 模块化的需求是规模的产物</h4>
+
+<p>当web page进化到web application，浏览器端处理的逻辑越来越复杂，展现的样式和动画越来越多，业务逻辑也越来越复杂，对于工程的要求也就越来越高。于是模块化的需求也就产生了。</p>
+
+<h4 id="toc_3">1.2 什么是模块化 ？</h4>
+
+<p>模块化是一种将系统分离成独立功能部分的方法，可将系统分割成独立的功能部分，严格定义模块接口、模块间具有透明性。</p>
+
+<h4 id="toc_4">1.3 为什么要使用模块 ?</h4>
+
+<p>模块化可以使你的代码低耦合，功能模块直接不相互影响。<br>
+模块化是工程化的需求，是为了更好的管理代码</p>
+
+<h2 id="toc_5">2、历程（进化与类举）</h2>
+
+<h4 id="toc_6">无模块</h4>
+
+<div><pre><code class="language-none">if(xx){
+     //.......
+}else{
+     //xxxxxxxxxxx
+}
+for(var i=0; i&lt;10; i++){
+     //todo
+}
+element.onclick = function(){
+     //todo
+}</code></pre></div>
+
+<blockquote>
+<p>特点：代码简单的堆在一起，只要能从上往下依次执行就可以了。</p>
+</blockquote>
+
+<h4 id="toc_7">模块萌芽</h4>
+
+<div><pre><code class="language-none">function m1(){ 
+　　//... 
+} 
+function m2(){ 
+    //... 
+} </code></pre></div>
+
+<blockquote>
+<p>这时的模块就是实现特定功能的一组方法。把不同的函数（以及记录状态的变量）简单地放在一起，就算是一个模块。 </p>
+
+<p>上面的函数m1()和m2()，组成一个模块。使用的时候，直接调用就行了。<br>
+缺点也很明显：&quot;污染&quot;了全局变量，无法保证不与其他模块发生变量名冲突，而且模块成员之间看不出直接关系。 </p>
+</blockquote>
+
+<h4 id="toc_8">对象写法</h4>
+
+<div><pre><code class="language-none">var module1 = new Object({ 
+    _count : 0, 
+　　m1 : function (){ 
+　　  //... 
+　　}, 
+　　m2 : function (){ 
+　　  //... 
+　　} 
+}); </code></pre></div>
+
+<blockquote>
+<p>上面的函数m1()和m2(），都封装在module1对象里。使用的时候，就是调用这个对象的属性。<br>
+但是，这样的写法会暴露所有模块成员，内部状态可以被外部改写(_count ++ 操作)（当然也包括内部的方法）。</p>
+</blockquote>
+
+<h4 id="toc_9">立即执行函数写法</h4>
+
+<p>使用&quot;立即执行函数&quot;，可以达到不暴露私有成员的目的。</p>
+
+<div><pre><code class="language-none">var module1 = (function(){ 
+　　var _count = 0; 
+　　var m1 = function(){ 
+　　  //... 
+　　}; 
+　　var m2 = function(){ 
+　　  //... 
+    }; 
+　　return { 
+　　  m1 : m1, 
+　　  m2 : m2 
+　　}; 
+})(); </code></pre></div>
+
+<blockquote>
+<p>问题：使用上面的写法，外部代码无法读取内部的_count变量。<br>
+module1就是Javascript模块的基本写法。等下，再对这种写法进行加工。<br>
+此时的模块化思想已经成型</p>
+</blockquote>
+
+<h3 id="toc_10">还有一些其他的写法, 如：</h3>
+
+<h4 id="toc_11">放大模式</h4>
+
+<p>如果一个模块很大，必须分成几个部分，或者一个模块需要继承另一个模块，这时就有必要采用&quot;放大模式&quot;（augmentation）。 </p>
+
+<div><pre><code class="language-none">var module1New = (function (mod){ 
+    mod.m3 = function () { 
+　　  //... 
+　　}; 
+　　return mod; 
+})(module1); </code></pre></div>
+
+<blockquote>
+<p>上面的代码为module1模块添加了一个新方法m3()，然后返回新的module1模块。 </p>
+</blockquote>
+
+<h4 id="toc_12">宽放大模式</h4>
+
+<blockquote>
+<p>在浏览器环境中，模块的各个部分通常都是从网络上获取的，有时无法知道哪个部分会先加载。如果采用上一节的写法，第一个执行的部分有可能加载一个不存在空对象，这时就要采用&quot;宽放大模式&quot;。 </p>
+</blockquote>
+
+<div><pre><code class="language-none">var module1 = ( function (mod){ 
+    //... 
+　　return mod; 
+})(window.module1 || {}); </code></pre></div>
+
+<blockquote>
+<p>与&quot;放大模式&quot;相比，＂宽放大模式＂就是&quot;立即执行函数&quot;的参数可以是空对象。 </p>
+</blockquote>
+
+<h4 id="toc_13">输入全局变量</h4>
+
+<p>独立性是模块的重要特点，模块内部最好不与程序的其他部分直接交互。<br>
+为了在模块内部调用全局变量，必须显式地将其他变量输入模块。 </p>
+
+<div><pre><code class="language-none">var module1 = (function ($, Tatami) { 
+    //... 
+})(jQuery, Ttm);</code></pre></div>
+
+<blockquote>
+<p>上面的module1模块需要使用jQuery和Ttm，就把这两个库（其实是两个模块）当作参数输入module1。这样做除了保证模块的独立性，还使得模块之间的依赖关系变得明显。</p>
+</blockquote>
+
+<h3 id="toc_14">3、模块化的推进与繁荣</h3>
+
+<p><a href="https://blog.csdn.net/Real_Bird/article/details/54869066">各种现代模块推演</a></p>
+
+<p>js模块化编程，已经成为一个迫切的需求。理想情况下，开发者只需要实现核心的业务逻辑，其他都可以加载别人已经写好的模块。</p>
+
+<h4 id="toc_15">各种标准出现了（CommonJS、AMD、CMD、UMD、ES6）</h4>
+
+<p><img src="./img/module_pic.png" alt=""></p>
+
+<h4 id="toc_16">3.1 commonJS(Node)</h4>
+
+<p><a href="http://javascript.ruanyifeng.com/nodejs/module.html">阮老师 commonJS module</a></p>
+
+<p>CommonJS是一个更偏向于服务器端的规范。CommonJS的一个模块就是一个脚本文件。require命令第一次加载该脚本时就会执行整个脚本，然后在内存中生成一个对象(如下)。</p>
+
+<div><pre><code class="language-none">{
+  id: &#39;...&#39;,
+  exports: { ... },
+  loaded: true,
+  ...
+}</code></pre></div>
+
+<blockquote>
+<p>以后需要用到这个模块时，就会到exports属性上取值。即使再次执行require命令，也不会再次执行该模块，而是到缓存中取值。</p>
+</blockquote>
+
+<div><pre><code class="language-none">//math.js
+exports.add = function() {
+    var sum = 0, i = 0, args = arguments, l = args.length;
+    while (i &lt; l) {
+        sum += args[i++];
+    }
+    return sum;
+};
+
+//increment.js
+var add = require(&#39;math&#39;).add;
+exports.increment = function(val) {
+    return add(val, 1);
+};</code></pre></div>
+
+<p>由于CommonJS是同步加载模块，这对于服务器端不是一个问题，因为所有的模块都放在本地硬盘。等待模块时间就是硬盘读取文件时间，很小。但是，对于浏览器而言，它需要从服务器加载模块，涉及到网速，代理等原因，一旦等待时间过长，浏览器处于”假死”状态。</p>
+
+<p>所以在浏览器端，不适合于CommonJS规范。所以在浏览器端又出现了一个规范—---AMD。</p>
+
+<h4 id="toc_17">3.2 AMD(requireJs)</h4>
+
+<p>AMD(Asynchronous Module Definition)异步模块定义。异步强调的是，在加载模块以及模块所依赖的其它模块时，都采用异步加载的方式，避免模块加载阻塞了网页的渲染进度。</p>
+
+<p>模块定义：</p>
+
+<div><pre><code class="language-none">define([module-name?], [array-of-dependencies?], [module-factory-or-object]);</code></pre></div>
+
+<blockquote>
+<p>id：模块的名字，如果没有提供该参数，模块的名字应该默认为模块加载器请求的指定脚本的名字；<br>
+dependencies：模块的依赖，已被模块定义的模块标识的数组字面量。<br>
+factory：模块的工厂函数，模块初始化要执行的函数或对象。  </p>
+</blockquote>
+
+<p>AMD也采用require命令加载模块，但是不同于CommonJS，它要求两个参数：</p>
+
+<p>require([module], callback);</p>
+
+<blockquote>
+<p>第一个参数[module]，是一个数组，里面的成员是要加载的模块，callback是加载完成后的回调函数。</p>
+</blockquote>
+
+<div><pre><code class="language-none">// math.js
+define(function() {
+  var add = function(x, y) {
+    return x + y;
+  }
+
+  return  {
+    add: add
+  }
+})
+
+// main.js
+require([&#39;math&#39;], function(math) {
+  alert(math.add(1, 1));
+})</code></pre></div>
+
+<blockquote>
+<p>当require()加载math模块的时候，就会先加载它依赖的模块。当有多个依赖时，就将所有的依赖都写在define()函数第一个参数数组中，所以说AMD是依赖前置的。这不同于CMD规范，它是依赖就近的。</p>
+</blockquote>
+
+<p><a href="https://github.com/creeperyang/amd-loader">AMD加载的实现</a></p>
+
+<h4 id="toc_18">3.3 CMD(seaJS)</h4>
+
+<p>CMD（即Common Module Definition通用模块定义）</p>
+
+<p>CMD推崇依赖就近，延迟执行。可以把你的依赖写进代码的任意一行，如下：</p>
+
+<div><pre><code class="language-none">define(factory)</code></pre></div>
+
+<p>factory为函数时，表示是模块的构造方法。执行该构造方法，可以得到模块向外提供的接口。factory 方法在执行时，默认会传入三个参数：require、exports 和 module.</p>
+
+<div><pre><code class="language-none">define(function(require, exports, module) {
+  var a = require(&#39;./a&#39;);
+  a.doSomething();
+  var b = require(&#39;./b&#39;);
+  b.doSomething();
+})</code></pre></div>
+
+<blockquote>
+<p>因为CMD推崇一个文件一个模块，所以经常就用文件名作为模块id
+CMD推崇依赖就近，所以一般不在define的参数中写依赖，在factory中写。
+sea.js通过sea.use()来加载模块。 seajs.use(id, callback?)</p>
+</blockquote>
+
+<h5 id="toc_19">AMD与CMD 区别联系</h5>
+
+<p>SeaJS要解决的问题和requireJS一样，只不过在模块定义方式和模块加载（可以说运行、解析）时机上有所不同。</p>
+
+<p>AMD和CMD都是用define和require。</p>
+
+<p>CMD标准倾向于在使用过程中提出依赖，就是不管代码写到哪突然发现需要依赖另一个模块，那就在当前代码用require引入就可以了，规范会帮你搞定预加载，你随便写就可以了。但是AMD标准让你必须提前在头部依赖参数部分写好。</p>
+
+<p>虽然都是并行加载js文件，但还是有所区别，AMD是预加载，在并行加载js文件同时，还会解析执行该模块（因为还需要执行，所以在加载某个模块前，这个模块的依赖模块需要先加载完成）；而CMD是懒加载，虽然会一开始就并行加载js文件，但是不会执行，而是在需要的时候才执行。</p>
+
+<p>AMD优点：加载快速，尤其遇到多个大文件，因为并行解析，所以同一时间可以解析多个文件。</p>
+
+<p>AMD缺点：并行加载，异步处理，加载顺序不一定，可能会造成一些困扰，甚至为程序埋下大坑。</p>
+
+<p>CMD优点：因为只有在使用的时候才会解析执行js文件，因此，每个JS文件的执行顺序在代码中是有体现的，是可控的。</p>
+
+<p>CMD缺点：执行等待时间会叠加。因为每个文件执行时是同步执行（串行执行），因此时间是所有文件解析执行时间之和，尤其在文件较多较大时，这种缺点尤为明显。</p>
+
+<h4 id="toc_20">3.4 UMD (Universal Module Definition 通用模块定义)</h4>
+
+<p>既然CommonJs和AMD风格一样流行，似乎缺少一个统一的规范。所以产生了这样的需求，希望有支持两种风格的“通用”模式，于是通用模块规范（UMD）诞生了。</p>
+
+<blockquote>
+<p>UMD希望提供一个前后端跨平台的解决方案(支持AMD与CommonJS模块方式)</p>
+</blockquote>
+
+<div><pre><code class="language-none">(function (root, factory) {
+    if (typeof define === &#39;function&#39; &amp;&amp; define.amd) {
+        // AMD
+        define([&#39;jquery&#39;, &#39;underscore&#39;], factory);
+    } else if (typeof exports === &#39;object&#39;) {
+        // Node, CommonJS之类的
+        module.exports = factory(require(&#39;jquery&#39;), require(&#39;underscore&#39;));
+    } else {
+        // 浏览器全局变量(root 即 window)
+        root.returnExports = factory(root.jQuery, root._);
+    }
+}(this, function ($, _) {
+    function a(){}; 
+    function b(){}; 
+    function c(){};
+    return {
+        b: b,
+        c: c
+    }
+}));</code></pre></div>
+
+<blockquote>
+<p>先判断是否支持Node.js模块格式（exports是否存在），存在则使用Node.js模块格式。<br>
+再判断是否支持AMD（define是否存在），存在则使用AMD方式加载模块。<br>
+前两个都不存在，则将模块公开到全局（window或global）。  </p>
+</blockquote>
+
+<p>更多有关UMD的例子在Github上的<a href="https://github.com/umdjs/umd">官方repo</a></p>
+
+<h4 id="toc_21">3.5 ES6 终极boss</h4>
+
+<p>新的、我们在用的东西、新规范、代表未来、牛逼。</p>
+
+<blockquote>
+<p>es6 模块新的标准在设计上是兼容已经存在的CommonJS和AMD模块的。</p>
+</blockquote>
+
+<p>es6通过import、export实现模块的输入输出。import命令用于输入其他模块提供的功能，export命令用于规定模块的对外接口。</p>
+
+<div><pre><code class="language-none">//a.js
+export {a, b, c};
+
+//b.js
+import {a, b, c } from &#39;a.js&#39;;
+
+//expt.js
+export function abc(){}//export 一个命名的function  
+export default function(){} //export default function  
+export num = 123 //export 一个数值  
+export obj = {}  
+export { obj as default };
+
+//import
+import expt from &#39;expt&#39;//default export  
+import {default as myModule} from &#39;expt&#39; //rename  
+import {abc,num,obj} from &#39;expt&#39; </code></pre></div>
+
+<p>你可能要注意的地方：</p>
+
+<ul>
+<li>所有的import和export只能写在顶级作用域中。你不能在条件判断语句和函数作用域内使用import。</li>
+<li>所有导出的变量名必须是显式的，你不能通过遍历一个数组，动态生成一组导出名进行导出。</li>
+<li>模块对象都是被冻结的，不能通过polyfill为它添加新的特性。</li>
+<li>对于import的错误，无法进行recovery。一个应用可能依赖许多的模块，一旦有一个模块加载失败，这个应用都不会运行。你不能在try/catch中使用import。正是因为es6的模块表现得如此静态，webpack才能在编译的时候检测出代码中的错误。</li>
+<li>你没法为一个模块在加载所有依赖项之前添加钩子，这意味着一个模块没有办法控制其依赖项的加载方式</li>
+</ul>
+
+<p>只举一个例子  like ...</p>
+
+<div><pre><code class="language-none">try {
+    import es6 from &#39;./es6.js&#39;;
+} catch (error) {
+    console.log(error);
+}</code></pre></div>
+
+<p><a href="http://es6.ruanyifeng.com/#docs/module">阮老师关于module</a>  </p>
+
+<h5 id="toc_22">再看一把es6与commonjs区别</h5>
+
+<div><pre><code class="language-none">es6 {
+　　export: &#39;可以输出多个，输出方式为 {}&#39; ，
+　　export  default : &#39; 只能输出一个 ，可以与export 同时输出，但是不建议这么做&#39;，
+　　解析阶段确定对外输出的接口，解析阶段生成接口，
+　　模块不是对象，加载的不是对象，
+　　可以单独加载其中的某个接口（方法），
+　　静态分析，动态引用，输出的是值的引用，值改变，引用也改变，即原来模块中的值改变则该加载的值也改变，
+　　this 指向undefined
+}
+
+commonJS {
+　　module.exports =  xxx : &#39;只能输出一个，且后面的会覆盖上面的&#39; ，
+　　exports.  xxx : &#39; 可以输出多个&#39;，
+　　运行阶段确定接口，运行时才会加载模块，
+　　模块是对象，加载的是该对象，
+　　加载的是整个模块，即将所有的接口全部加载进来，
+　　输出是值的拷贝，即原来模块中的值改变不会影响已经加载的该值，
+　　this 指向当前模块
+}</code></pre></div>
+
+<p><a href="http://caibaojian.com/es6/module.html">commonjs与es6区别</a></p>
+
+<blockquote>
+<p>在结合es6模块和commonJS模块的区别之后，我们知道es6的特点是静态解析，而commonJS模块的特点是动态解析的，因此，借于es6模块的静态解析，tree-shaking的实现才能成为可能。</p>
+</blockquote>
+
+<h4 id="toc_23">3.6 目前的我们----少不了webpack</h4>
+
+<p>虽然不算是模块化规范，但是为我们解决模块问题提供了极大帮助。</p>
+
+<p><a href="http://www.baidu.com">webpack模块化原理</a></p>
+
+<h3 id="toc_24">4、拨开云雾</h3>
+
+<p>模块的本质：模块化相当于闭包开发， 接口导出就相当于将父函数（模块）内的子函数给暴漏到父函数外。</p>
+
+<h3 id="toc_25">5、总结必备</h3>
+
+<h4 id="toc_26">5.1 模块化的优缺点：</h4>
+
+<h5 id="toc_27">优点：</h5>
+
+<p>(1)可维护性  </p>
+
+<ul>
+<li>灵活架构，焦点分离<br></li>
+<li>方便模块间组合、分解<br></li>
+<li>方便单个模块功能调试、升级<br></li>
+<li>多人协作互不干扰<br></li>
+</ul>
+
+<p>(2)可测试性  </p>
+
+<ul>
+<li>可分单元测试<br></li>
+</ul>
+
+<h5 id="toc_28">缺点：</h5>
+
+<p>性能损耗  </p>
+
+<ul>
+<li>系统分层，调用链会很长<br></li>
+<li>模块间通信,模块间发送消息会很耗性能<br></li>
+</ul>
+
+<h4 id="toc_29">5.2 模块化的意义</h4>
+
+<ul>
+<li>组件的复用，降低开发成本和维护成本</li>
+<li>组件单独开发，方便分工合作</li>
+<li>模块化遵循标准，方便自动化依赖管理，代码优化，部署</li>
+</ul>
+
+<p>------------(完)---------------</p>
+
+<p>AND  ~~~~</p>
+
+<p><a href="">Node require 解析</a><br>
+<a href="">Webpack 模块化</a></p>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>about webpack模块化</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h4 id="toc_0">about webpack 模块化</h4>
+
+<h5 id="toc_1">概要</h5>
+
+<p>webpack作为一个构建工具，解决了前端代码缺少模块化能力的问题。代码经过webpack构建和包装之后，能够在浏览器以模块化的方式运行。这些能力，都是因为webpack对我们的代码进行了一层包装。</p>
+
+<h4 id="toc_2">准备</h4>
+
+<p>首先我们创建一个简单入口模块index.js和一些依赖模块</p>
+
+<div><pre><code class="language-none">//index.js
+let {name, age, address} = require(&#39;./common.js&#39;);
+import es6 from &#39;./es6.js&#39;;
+
+console.log(name, es6(10));</code></pre></div>
+
+<div><pre><code class="language-none">//es6.js
+export default function(a){
+    return 1000 + a;
+}
+
+export function testfun(a){
+    return a + &#39;哈哈哈&#39;;
+}</code></pre></div>
+
+<div><pre><code class="language-none">//common.js
+module.exports = {
+    age: 10,
+    name: &#39;zhangsan&#39;,
+    address: function(){
+        return &#39;dddd&#39;
+    }
+}</code></pre></div>
+
+<p>webpack 配置如下：</p>
+
+<div><pre><code class="language-none">var path = require(&quot;path&quot;);
+module.exports = {
+    entry: path.join(__dirname, &#39;index.js&#39;),
+    output: {
+        path: path.join(__dirname, &#39;outs&#39;),
+        filename: &#39;index.js&#39;
+    },
+};</code></pre></div>
+
+<blockquote>
+<p>这是一个最简单的配置，只指定了模块入口和输出路径。</p>
+</blockquote>
+
+<p>执行webpack，得到经过webpack打包的代码如下（去掉了不必要的注释）：</p>
+
+<div><pre><code class="language-none">/******/ (function(modules) { // webpackBootstrap
+/******/    // The module cache
+/******/    var installedModules = {};
+/******/    // The require function
+/******/    function __webpack_require__(moduleId) {
+/******/        // Check if module is in cache
+/******/        if(installedModules[moduleId]) {
+/******/            return installedModules[moduleId].exports;
+/******/        }
+/******/        // Create a new module (and put it into the cache)
+/******/        var module = installedModules[moduleId] = {
+/******/            i: moduleId,
+/******/            l: false,
+/******/            exports: {}
+/******/        };
+/******/        // Execute the module function
+/******/        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/        // Flag the module as loaded
+/******/        module.l = true;
+/******/        // Return the exports of the module
+/******/        return module.exports;
+/******/    }
+/******/    // expose the modules object (__webpack_modules__)
+/******/    __webpack_require__.m = modules;
+/******/
+/******/    // expose the module cache
+/******/    __webpack_require__.c = installedModules;
+/******/
+/******/    // define getter function for harmony exports
+/******/    __webpack_require__.d = function(exports, name, getter) {
+/******/        if(!__webpack_require__.o(exports, name)) {
+/******/            Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/        }
+/******/    };
+/******/    // define __esModule on exports
+/******/    __webpack_require__.r = function(exports) {
+/******/        if(typeof Symbol !== &#39;undefined&#39; &amp;&amp; Symbol.toStringTag) {
+/******/            Object.defineProperty(exports, Symbol.toStringTag, { value: &#39;Module&#39; });
+/******/        }
+/******/        Object.defineProperty(exports, &#39;__esModule&#39;, { value: true });
+/******/    };
+/******/    __webpack_require__.t = function(value, mode) {
+/******/        if(mode &amp; 1) value = __webpack_require__(value);
+/******/        if(mode &amp; 8) return value;
+/******/        if((mode &amp; 4) &amp;&amp; typeof value === &#39;object&#39; &amp;&amp; value &amp;&amp; value.__esModule) return value;
+/******/        var ns = Object.create(null);
+/******/        __webpack_require__.r(ns);
+/******/        Object.defineProperty(ns, &#39;default&#39;, { enumerable: true, value: value });
+/******/        if(mode &amp; 2 &amp;&amp; typeof value != &#39;string&#39;) for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/        return ns;
+/******/    };
+/******/
+/******/    // getDefaultExport function for compatibility with non-harmony modules
+/******/    __webpack_require__.n = function(module) {
+/******/        var getter = module &amp;&amp; module.__esModule ?
+/******/            function getDefault() { return module[&#39;default&#39;]; } :
+/******/            function getModuleExports() { return module; };
+/******/        __webpack_require__.d(getter, &#39;a&#39;, getter);
+/******/        return getter;
+/******/    };
+/******/
+/******/    // Object.prototype.hasOwnProperty.call
+/******/    __webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/    // __webpack_public_path__
+/******/    __webpack_require__.p = &quot;&quot;;
+/******/
+/******/
+/******/    // Load entry module and return exports
+/******/    return __webpack_require__(__webpack_require__.s = &quot;./src/index.js&quot;);
+/******/ })
+/******/ ({
+
+/***/ &quot;./src/common.js&quot;:
+/***/ (function(module, exports) {
+
+  eval(&quot;module.exports = {\n\tage: 10,\n\tname: &#39;zhangsan&#39;,\n\taddress: function(){\n\t\treturn &#39;dddd&#39;\n\t}\n}\n\n//# sourceURL=webpack:///./src/common.js?&quot;);
+  /***/ }),
+  
+  /***/ &quot;./src/es6.js&quot;:
+  /***/ (function(module, __webpack_exports__, __webpack_require__) {
+  
+  &quot;use strict&quot;;
+  eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \&quot;testfun\&quot;, function() { return testfun; });\n/* harmony default export */ __webpack_exports__[\&quot;default\&quot;] = (function(a){\n\treturn 1000 + a;\n});\n\nfunction testfun(a){\n\treturn a + &#39;哈哈哈&#39;;\n}\n\n//# sourceURL=webpack:///./src/es6.js?&quot;);
+  /***/ }),
+
+  /***/ &quot;./src/index.js&quot;:
+  /***/ (function(module, __webpack_exports__, __webpack_require__) {  
+  &quot;use strict&quot;;
+  eval(&quot;__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./es6.js */ \&quot;./src/es6.js\&quot;);\nlet {name, age, address} = __webpack_require__(/*! ./common.js */ \&quot;./src/common.js\&quot;);\n\n\nconsole.log(name, Object(_es6_js__WEBPACK_IMPORTED_MODULE_0__[\&quot;default\&quot;])(10));\n\n\n//# sourceURL=webpack:///./src/index.js?&quot;);
+
+  /***/ })
+
+  /******/ });</code></pre></div>
+
+<h3 id="toc_3">分析</h3>
+
+<p>上面webpack打包的代码，整体可以简化成下面的结构：</p>
+
+<div><pre><code class="language-none">(function (modules) {/* xxxx */})
+({
+    &#39;./src/common.js&#39;: (function(module, exports) {
+                /* 模块common.js的代码 */
+                eval(&quot;module.exports = {\n\tage: 10,\n\tname: &#39;zhangsan&#39;,\n\taddress: function(){\n\t\treturn &#39;dddd&#39;\n\t}\n}\n\n//# sourceURL=webpack:///./src/common.js?&quot;);
+                }),
+    &#39;./src/es6.js&#39;: f(){}, /* 模块es6.js的代码 */
+    &#39;./src/index.js&#39;: f(){}, /* 模块index.js的代码 */
+})</code></pre></div>
+
+<p>入口处文件最后结果：</p>
+
+<div><pre><code class="language-none">var str = `__webpack_require__.r(__webpack_exports__);
+var _es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(\&quot;./src/es6.js\&quot;);
+var {name, age, address} = __webpack_require__(\&quot;./src/common.js\&quot;);
+console.log(name, Object(_es6_js__WEBPACK_IMPORTED_MODULE_0__[\&quot;default\&quot;])(10));`;
+eval(str);</code></pre></div>
+
+<blockquote>
+<p>可以看到，整个打包生成的代码是一个立即执行函数。</p>
+</blockquote>
+
+<p>首先：函数参数是我们写的各个模块组成的数组，只不过我们的代码，被webpack包装在了一个函数的内部（也就是说我们的模块），在这里就是一个函数。为什么要这样做，是因为浏览器本身不支持模块化，那么webpack就用函数作用域来hack模块化的效果。</p>
+
+<p>如果你debug过node代码，你会发现一样的hack方式，node中的模块也是函数，跟模块相关的参数exports、require，或者其他参数<strong>filename和</strong>dirname等都是通过函数传值作为模块中的变量，模块与外部模块的访问就是通过这些参数进行的，当然这对开发者来说是透明的。</p>
+
+<p>同样的方式，webpack也控制了模块的module、exports和require，那么我们就看看webpack是如何实现这些功能的。</p>
+
+<p>下面是摘取的函数内容和一些注释：</p>
+
+<div><pre><code class="language-none">// 1、模块缓存对象
+var installedModules = {};
+// 2、webpack实现的require
+function __webpack_require__(moduleId) {
+    // 3、判断是否已缓存模块
+    if(installedModules[moduleId]) {
+        return installedModules[moduleId].exports;
+    }
+    // 4、缓存模块
+    var module = installedModules[moduleId] = {
+        i: moduleId,
+        l: false,
+        exports: {}
+    };
+    // 5、调用模块函数
+    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+    // 6、标记模块为已加载
+    module.l = true;
+    // 7、返回module.exports
+    return module.exports;
+}
+// 8、require第一个模块
+return __webpack_require__(__webpack_require__.s = 0);
+</code></pre></div>
+
+<p>webpack之前的版本打过的内容，是这样子的</p>
+
+<div><pre><code class="language-none">(function(module) {
+})([(function (){}), function() {}])</code></pre></div>
+
+<blockquote>
+<p>模块数组作为参数传入IIFE函数后，IIFE做了一些初始化工作：
+IIFE首先定义了installedModules ，这个变量被用来缓存已加载的模块。</p>
+
+<p>定义了<strong>webpack_require</strong> 这个函数，函数参数为模块的id。这个函数用来实现模块的require。</p>
+
+<p><strong>webpack_require</strong> 函数首先会检查是否缓存了已加载的模块，如果有则直接返回缓存模块的exports。如果没有缓存，也就是第一次加载，则首先初始化模块，并将模块进行缓存。</p>
+
+<p>然后调用模块函数，也就是前面webpack对我们的模块的包装函数，将module、module.exports和<strong>webpack_require</strong>作为参数传入。注意这里做了一个动态绑定，将模块函数的调用对象绑定module.exports，这是为了保证在模块中的this指向当前模块。</p>
+
+<p>调用完成后，模块标记为已加载。</p>
+
+<p>返回模块exports的内容。</p>
+
+<p>利用前面定义的<strong>webpack_require</strong> 函数，require第0个模块，也就是入口模块。</p>
+</blockquote>
+
+<h3 id="toc_4">结果</h3>
+
+<p>打包过的模块生成了一些以自执行函数形式的闭包。</p>
+
+
+
+
+</body>
+
+</html>

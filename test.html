@@ -1,0 +1,11 @@
+<script>
+        //some code in webpack 
+        var bb  = (function(module, __webpack_exports__, __webpack_require__) {
+            "use strict";
+            var str = `__webpack_require__.r(__webpack_exports__);
+                    var _es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(\"./src/es6.js\");
+                    let {name, age, address} = __webpack_require__(\"./src/common.js\");
+                    console.log(name, Object(_es6_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(10));`;
+            eval(str);
+        })
+</script>
